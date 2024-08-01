@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LibraryProject.Models.BooksSetModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<p>
+@Html.ActionLink("Shelves Page", "Index", "ShelfModels")
+</p>
+<p>
+@Html.ActionLink("Libraries Page", "Index", "LibraryModels")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shelf)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shelf.Id)
+            </td>
+            <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id}) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id}) |
+                    @Html.ActionLink("Create New Book", "Create", "BookModels", new { id = item.Id }) |
+                    @Html.ActionLink("Books Page view", "Index", "BookModels", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,67 @@
+﻿@model LibraryProject.ModelView.BookVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>BookModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(x => x.BooksSetId)
+            <div class="form-group">
+                <label asp-for="BookName" class="control-label"></label>
+                <input asp-for="BookName" class="form-control" />
+                <span asp-validation-for="BookName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Width" class="control-label"></label>
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div>
+                @if (ViewBag.Short != null)
+                {
+                    <h1 style="color: red">@ViewBag.Short</h1>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Book Set List", "Details", "BooksSetModels", new { id = Model.BooksSetId });
+</div>
+<div>
+    @if (ViewBag.ex != null)
+    {
+        <h1 style="color: red">@ViewBag.ex</h1>
+    }
+</div>
+<div>
+    @if (ViewBag.Suc != null)
+    {
+        <h1 style="color: red">@ViewBag.Suc</h1>
+    }
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    if(ViewBag.ex)
+</script>

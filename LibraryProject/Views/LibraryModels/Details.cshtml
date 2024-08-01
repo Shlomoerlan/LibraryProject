@@ -1,0 +1,45 @@
+﻿@model LibraryProject.Models.LibraryModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LibraryModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <h1> @Html.DisplayNameFor(model => model.Genre )</h1>
+        </dt>
+        <dd class = "col-sm-10">
+            <h1>: @Html.DisplayFor(model => model.Genre)</h1>
+        </dd>
+        @foreach (var shelf in Model.Shelves)
+        {
+            <h4>Shelf Id Number: @shelf.Id</h4>
+            @foreach (var booksSet in shelf.BooksSets)
+            {
+
+                <dd class="col-sm-10">
+                    <h4>Book Set Name: @booksSet.SetName</h4>
+                </dd>
+                <dt class="col-sm-2">
+                    "Books: "
+                </dt>
+                @foreach (var book in booksSet.Books)
+                {
+
+                    <dd class="col-sm-10">
+                        <span>Book Name: @book.BookName </span>
+                    </dd>
+                }
+            }
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
